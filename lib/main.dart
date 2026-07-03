@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savicam_tmod_v2/screens/pairing_screen.dart';
 import 'screens/main_screen.dart';
 import 'core/config/env_config.dart';
 import 'core/services/supabase_service.dart';
@@ -44,7 +45,7 @@ class SaViCamApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
       ),
       // Gọi MainScreen chứa PageView và nút SOS mà chúng ta đã dựng
-      home: const MainScreen(), 
+      home: const PairingScreen(), 
     );
   }
 }
