@@ -3,6 +3,9 @@ import 'screens/main_screen.dart';
 import 'core/config/env_config.dart';
 import 'core/services/supabase_service.dart';
 
+import 'core/services/headless_service.dart';
+import 'core/services/tts_service.dart';
+
 Future<void> main() async {
   // Bắt buộc phải có dòng này khi gọi các hàm async (như đọc file .env hay gọi Supabase) trước runApp
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +16,12 @@ Future<void> main() async {
 
     // 2. Khởi tạo dịch vụ Supabase để sẵn sàng bắn tín hiệu sang Relap
     await SupabaseService.instance.init();
+    
+    // 3. Khởi tạo TTS Service
+    await TTSService.instance.init();
+
+    // 4. Khởi động background service (Core Loop)
+    await HeadlessService.initializeService();
     
   } catch (e) {
     debugPrint("Lỗi khởi tạo hệ thống: $e");

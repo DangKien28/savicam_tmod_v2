@@ -22,12 +22,21 @@ class OfflineMapService {
     if (!await file.exists()) {
       debugPrint("Không tìm thấy Sổ tay lộ trình. Bắt đầu tải tệp OpenStreetMap từ Cloudflare R2...");
       await _downloadMapDataFromR2(dbPath);
+      
+      if (!await file.exists()) {
+        debugPrint("Lỗi: Không thể tải hoặc lưu tệp bản đồ ngoại tuyến.");
+        return;
+      }
     } else {
       debugPrint("Sổ tay lộ trình đã sẵn sàng trong bộ nhớ Edge.");
     }
 
     // Mở database ở chế độ Read-only để tăng tốc độ truy vấn
-    _database = await openDatabase(dbPath, readOnly: true);
+    try {
+      _database = await openDatabase(dbPath, readOnly: true);
+    } catch (e) {
+      debugPrint("Lỗi khi mở database bản đồ: $e");
+    }
   }
 
   Future<String> _getDbPath() async {

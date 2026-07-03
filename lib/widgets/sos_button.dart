@@ -53,6 +53,12 @@ class _SOSButtonState extends State<SOSButton> {
   }
 
   @override
+  void dispose() {
+    _cancelTimer();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
@@ -69,7 +75,7 @@ class _SOSButtonState extends State<SOSButton> {
             border: Border.all(color: Colors.white, width: 2),
             boxShadow: [
               BoxShadow(
-                color: Colors.red.withOpacity(0.5),
+                color: Colors.red.withValues(alpha: 0.5),
                 blurRadius: 10,
                 spreadRadius: 2,
               )

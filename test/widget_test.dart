@@ -9,22 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:savicam_tmod_v2/main.dart';
+import 'package:savicam_tmod_v2/widgets/sos_button.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('SaViCam T-Mod main screen smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const SaViCamApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Đảm bảo PageView được hiển thị
+    expect(find.byType(PageView), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Đảm bảo nút SOS được hiển thị ở màn hình chính
+    expect(find.byType(SOSButton), findsOneWidget);
+    expect(find.text('SOS'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Kiểm tra thanh trạng thái
+    expect(find.text('CAMERA'), findsOneWidget);
+    expect(find.text('GPS'), findsOneWidget);
   });
 }

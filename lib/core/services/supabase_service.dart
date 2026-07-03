@@ -14,7 +14,7 @@ class SupabaseService {
   Future<void> init() async {
     await Supabase.initialize(
       url: EnvConfig.supabaseUrl,
-      anonKey: EnvConfig.supabaseAnonKey,
+      publishableKey: EnvConfig.supabaseAnonKey,
     );
     client = Supabase.instance.client;
     debugPrint("Supabase đã được khởi tạo thành công!");
