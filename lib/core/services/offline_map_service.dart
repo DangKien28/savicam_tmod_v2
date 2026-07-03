@@ -11,8 +11,9 @@ class OfflineMapService {
 
   Database? _database;
 
-  // Cấu hình URL trỏ thẳng về Bucket trên Cloudflare R2
-  final String _r2BucketUrl = "https://your-cloudflare-r2-url.com/osm_routing_data.db";
+  // Cloudflare R2 Public URL — bucket: savicam-map-data
+  // Dashboard: https://dash.cloudflare.com/1bd62f46d367b2bd180eecc016c4c451/r2/overview
+  final String _r2BucketUrl = "https://pub-9234ae75477e489fb6a0fda4c02ec5cd.r2.dev/osm_routing_data.db";
 
   /// Khởi tạo và kiểm tra trạng thái tệp bản đồ ngoại tuyến
   Future<void> initMapData() async {
